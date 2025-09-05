@@ -89,7 +89,7 @@
         <div id="page5" class="page hidden w-full space-y-6">
             <h2 class="text-2xl md:text-3xl font-bold text-pink-600 text-pacifico">And a message for you!</h2>
             <p class="text-lg text-gray-700 font-semibold leading-relaxed">How can i put only good photos.😂😂</p>
-            <img src="https://uc9aeaed6604f81107771911fca5.previews.dropboxusercontent.com/p/thumb/ACxznZ27cLFTtbjo5pXRBRem3LfSWAGPyYDbIn-wOrV0vF7tTBVImSuiNNK2mI2iks_mzZRCAu6znGmh18VBWXdGd07fDgTMJSSIye23cCzsUotwAFDhuWIyfBKJUpeBRT8n8JQg9CZ_GMLBqYmadr91BI5aWB8Y1UVAySPWnhgP679aNjdpwTXq9c-ltvRMqrcMpIqeWn6R_YazGrqwla1DXEqYbf_SVO-CoY1-cnFU_a3KfMCj-lY9jsuxdB_g9me9wWuG05_3uLz1MO6L5sC-9B_gVC9Uv4vn2iv82tLLmC3cZ8hbnUlSbnYYp1MQ5WJ7O65fhdRsD4xeiNRCciAycmHVCaOianvs11EgVwruCgZYGRKnoNdVCz9axopgkH-lhDKf1AcJFkBsj1khZXpe/p.jpeg" alt="Final Photo" class="rounded-2xl w-full max-w-sm mx-auto shadow-lg">
+            <img src="https://uc9aeaed6604f81107771911fca5.previews.dropboxusercontent.com/p/thumb/ACxznZ27cLFTtbjo5pXRBRem3LfSWAGPyYDbIn-wOrV0vF7tTBVImSuiNNK2mI2iks_mzZRCAu6znGmh18VBWXdGd07fDgTMJSSIye23cCzsUotwAFDhuWIyfBKJUpeBRT8n8JQg9CZ_GMLBqYmadr91BI5aWB4Y1UVAySPWnhgP679aNjdpwTXq9c-ltvRMqrcMpIqeWn6R_YazGrqwla1DXEqYbf_SVO-CoY1-cnFU_a3KfMCj-lY9jsuxdB_g9me9wWuG05_3uLz1MO6L5sC-9B_gVC9Uv4vn2iv82tLLmC3cZ8hbnUlSbnYYp1MQ5WJ7O65fhdRsD4xeiNRCciAycmHVCaOianvs11EgVwruCgZYGRKnoNdVCz9axopgkH-lhDKf1AcJFkBsj1khZXpe/p.jpeg" alt="Final Photo" class="rounded-2xl w-full max-w-sm mx-auto shadow-lg">
             <p class="text-lg text-gray-700 font-semibold leading-relaxed">Happy birthday Again! Just like how you were smiling in each photo I hope you will always keep smiling and be happy. I am not the friend you wised for I am probably the opposite of the friends u had in your life but i am greatful that you are my life. Thank you for being part of my life and filling it with joy and laughter.Only one advice "thoda sa, sirf thoda sa drama kam that's all." Cheers to another year of friendship and adventure!</p>
 
             <div class="flex items-center justify-center space-x-2 mt-4">
@@ -121,26 +121,32 @@
         const beginButton = document.getElementById('begin-button');
         const countdownDate = new Date("September 6, 2025 00:00:00").getTime();
 
-        const countdownInterval = setInterval(function() {
+        function updateCountdown() {
             const now = new Date().getTime();
             const distance = countdownDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             if (distance < 0) {
                 clearInterval(countdownInterval);
                 countdownElement.innerHTML = '<span class="text-pink-600 font-bold">It\'s your day!</span>';
                 beginButton.disabled = false;
             } else {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
                 document.getElementById("days").innerHTML = days;
                 document.getElementById("hours").innerHTML = hours;
                 document.getElementById("minutes").innerHTML = minutes;
                 document.getElementById("seconds").innerHTML = seconds;
             }
-        }, 1000);
+        }
+
+        // Update countdown immediately on load
+        updateCountdown();
+
+        // Then update it every second
+        const countdownInterval = setInterval(updateCountdown, 1000);
 
         // --- Quiz and Page Navigation Logic ---
         beginButton.addEventListener('click', () => {
@@ -228,3 +234,19 @@
 
         const style = document.createElement('style');
         style.innerHTML = `
+            @keyframes fall {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(calc(100vh + 10px)) rotate(720deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+    </script>
+</body>
+</html>
