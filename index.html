@@ -40,7 +40,7 @@
                 <div class="flex flex-col items-center"><span id="seconds">00</span><span class="text-sm font-normal">Seconds</span></div>
             </div>
 
-            <button id="begin-button" class="mt-8 px-8 py-4 bg-pink-500 text-white font-bold rounded-full shadow-lg hover:bg-pink-600 transition-colors transform hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>Let's Begin!</button>
+            <button id="begin-button" class="mt-8 px-8 py-4 bg-pink-500 text-white font-bold rounded-full shadow-lg hover:bg-pink-600 transition-colors transform hover:scale-105">Let's Begin!</button>
         </div>
 
         <!-- Page 2: Quiz Question 1 -->
@@ -89,7 +89,7 @@
         <div id="page5" class="page hidden w-full space-y-6">
             <h2 class="text-2xl md:text-3xl font-bold text-pink-600 text-pacifico">And a message for you!</h2>
             <p class="text-lg text-gray-700 font-semibold leading-relaxed">How can i put only good photos.😂😂</p>
-            <img src="https://uc9aeaed6604f81107771911fca5.previews.dropboxusercontent.com/p/thumb/ACxznZ27cLFTtbjo5pXRBRem3LfSWAGPyYDbIn-wOrV0vF7tTBVImSuiNNK2mI2iks_mzZRCAu6znGmh18VBWXdGd07fDgTMJSSIye23cCzsUotwAFDhuWIyfBKJUpeBRT8n8JQg9CZ_GMLBqYmadr91BI5aWB4Y1UVAySPWnhgP679aNjdpwTXq9c-ltvRMqrcMpIqeWn6R_YazGrqwla1DXEqYbf_SVO-CoY1-cnFU_a3KfMCj-lY9jsuxdB_g9me9wWuG05_3uLz1MO6L5sC-9B_gVC9Uv4vn2iv82tLLmC3cZ8hbnUlSbnYYp1MQ5WJ7O65fhdRsD4xeiNRCciAycmHVCaOianvs11EgVwruCgZYGRKnoNdVCz9axopgkH-lhDKf1AcJFkBsj1khZXpe/p.jpeg" alt="Final Photo" class="rounded-2xl w-full max-w-sm mx-auto shadow-lg">
+            <img src="https://uc9aeaed6604f81107771911fca5.previews.dropboxusercontent.com/p/thumb/ACwVTNEfKQdml-XqvIaSs6XipEf7TqwQ6Jg4WwgkgQrwgcae39vPQ_gBQ9E_3KQwYAWmHRvimOX0ALSNFdqYmySf3PAxNzM-siq7m7O4VkuKA7zoIaYWF2PrQ-gIAOa2_tT4ARBcgXNrepnmnwB9j21BWF0T7D68ogwtwPdVKHDWpsFC1G5-aHNfEeK0W-_M-Lx98ZUJcH9nXVuGDK7bU6xGWArgFaosejNq26uT_ukCAnhac5wBviaNmi8h5Qp2qOM4W4q7MKy8hq_C1R5vQHHBQRxusQV_Q21J9qe8cNtjpY30gTymSRV0pDD3PeLQqpP1HabCZ3Bh9TyH_DaofVeUCzPciQ_Gfg0kUARpIuWksf-rrR3-K4pMIS40LCLC_h2z20si8NkMTYl2UxYArqGK/p.jpeg?">
             <p class="text-lg text-gray-700 font-semibold leading-relaxed">Happy birthday Again! Just like how you were smiling in each photo I hope you will always keep smiling and be happy. I am not the friend you wised for I am probably the opposite of the friends u had in your life but i am greatful that you are my life. Thank you for being part of my life and filling it with joy and laughter.Only one advice "thoda sa, sirf thoda sa drama kam that's all." Cheers to another year of friendship and adventure!</p>
 
             <div class="flex items-center justify-center space-x-2 mt-4">
@@ -128,7 +128,6 @@
             if (distance < 0) {
                 clearInterval(countdownInterval);
                 countdownElement.innerHTML = '<span class="text-pink-600 font-bold">It\'s your day!</span>';
-                beginButton.disabled = false;
             } else {
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -141,12 +140,6 @@
                 document.getElementById("seconds").innerHTML = seconds;
             }
         }
-
-        // Update countdown immediately on load
-        updateCountdown();
-
-        // Then update it every second
-        const countdownInterval = setInterval(updateCountdown, 1000);
 
         // --- Quiz and Page Navigation Logic ---
         beginButton.addEventListener('click', () => {
@@ -246,6 +239,12 @@
             }
         `;
         document.head.appendChild(style);
+
+        // Then update it every second
+        const countdownInterval = setInterval(updateCountdown, 1000);
+
+        // Update countdown immediately on load
+        updateCountdown();
 
     </script>
 </body>
