@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffe4e6;
+        }
+        .text-pacifico {
+            font-family: 'Pacifico', cursive;
+        }
+        .quiz-container {
+            min-height: 450px;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <!-- Main Container for the entire application -->
+    <div id="app-container" class="bg-white rounded-3xl shadow-2xl p-6 md:p-10 w-full max-w-2xl text-center flex flex-col items-center justify-between transition-all duration-500 transform scale-100">
+
+        <!-- Page 1: Home Page -->
+        <div id="page1" class="page w-full space-y-6">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-pink-600 text-pacifico animate-pulse">Happy Birthday Nisha!</h1>
+            <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjcweXF4Z21heGNjeWhwa2dvdGQ0a3g1aWF5cnlyNnRqbXpwN3dkZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IQF90tVlBIByw/giphy.gif" alt="Birthday Meme" class="rounded-2xl w-full max-w-sm mx-auto shadow-lg">
+            
+            <p class="text-lg text-gray-700 font-semibold mt-4">A journey back in memory lane awaits you!</p>
+            
+            <div id="countdown" class="flex justify-center items-center space-x-4 text-gray-800 font-bold text-lg md:text-xl p-4 bg-pink-100 rounded-xl mt-6 shadow-inner">
+                <div class="flex flex-col items-center"><span id="days">00</span><span class="text-sm font-normal">Days</span></div>
+                <div class="flex flex-col items-center"><span id="hours">00</span><span class="text-sm font-normal">Hours</span></div>
+                <div class="flex flex-col items-center"><span id="minutes">00</span><span class="text-sm font-normal">Minutes</span></div>
+                <div class="flex flex-col items-center"><span id="seconds">00</span><span class="text-sm font-normal">Seconds</span></div>
+            </div>
+
+            <button id="begin-button" class="mt-8 px-8 py-4 bg-pink-500 text-white font-bold rounded-full shadow-lg hover:bg-pink-600 transition-colors transform hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>Let's Begin!</button>
+        </div>
+
+        <!-- Page 2: Quiz Question 1 -->
+        <div id="page2" class="page hidden w-full quiz-container space-y-6 flex flex-col justify-between">
+            <h2 class="text-2xl md:text-3xl font-bold text-pink-600">Guess this Place and date?</h2>
+            <img src="https://uc48f7c6f0b1643492c704bfc2a1.previews.dropboxusercontent.com/p/thumb/ACwZgqn_gRYMcoItWv3ebHcvFNvyC7li_ETpqLtbDFXRL5ovgOKQQV6D_pT0Sa9gCZIFHCLrO3XPQ79RPIU9cYvgstXa2OVbLL9j7PVNRi1UG3rynj5JrDbDD32bHojSAdlTIGati4zYNucoS8pxAL48GfXNMDZQDDvfQXhQKh-VqXnFunXmR9XiJLNg1FlV7hv-6m-kaNUoJBUxIEAfZDl_5iONme8wJXjzL1z-ZLLgSOVa8Fl10aMNXUPWenSV6lqq-pskqQzOmOAqzlCB87wGuC4wDyCuPGIOQdUxv0cmw8oiKvYc_m8O85ETuToTh9RRTchq3mltX2HYCFLZT8ploay9kp3soxNBQcIO5ELgcEV5hl-aL_hrKou_5TLxsEywRfeJVQUEd1C1JjJLyawO/p.jpeg" alt="Quiz Photo 1" class="rounded-2xl w-full max-w-sm mx-auto shadow-lg">
+            
+            <div class="flex flex-col space-y-4">
+                <button class="option-btn text-left w-full p-4 bg-pink-100 rounded-xl font-medium text-gray-800 hover:bg-pink-200 transition-colors"> May 2022, McD Raipur</button>
+                <button class="option-btn text-left w-full p-4 bg-pink-100 rounded-xl font-medium text-gray-800 hover:bg-pink-200 transition-colors"> July 2022, McD Raipur</button>
+                <button class="option-btn text-left w-full p-4 bg-pink-100 rounded-xl font-medium text-gray-800 hover:bg-pink-200 transition-colors"> McD </button>
+            </div>
+            
+            <p id="feedback2" class="text-lg font-bold text-center text-pink-600 transition-opacity duration-300 opacity-0"></p>
+        </div>
+
+        <!-- Page 3: Quiz Question 2 -->
+        <div id="page3" class="page hidden w-full quiz-container space-y-6 flex flex-col justify-between">
+            <h2 class="text-2xl md:text-3xl font-bold text-pink-600">Where were we going</h2>
+            <img src="https://uc66c5604a96d7d09bf797f2c239.previews.dropboxusercontent.com/p/thumb/ACwUAASPFaFfj49LpYgSuF518XsdHjNZ1O4wYxkPBQY0eyBAfkrJefWPzm7xhGoTbHoMWMhXpZ7VM2fnyZoEU136M0piYcOHdbxsUNrbNNygNyg5tV8aKCfoiNAnTUYEAEhvPzaeY6uHW1aCzK9oVFmvvohxEKO2nLXLgxYyg0LxjdqpCpxHdYq0mhYd-PrZxi9acM3Ts5-OODMwhLF9ZZ9EEzDUJQl8P2-ySKlvF3pQruP3fIBTisF-0LQQ41AGunfH-Xcc-xw_GkRSXJOmbuMr6B6IH5JG7J8NVLJ0l67qqXrK5KypxdwfhzuNlu3lt_v2Uenzg5wTIOyK_idaWN4FMmq91P0kFkkopMuuMtOLSoJ5CexIAvrlVDDrhTsuYCIkOxknwxJCJf1gtPvDy93J/p.jpeg" alt="Quiz Photo 2" class="rounded-2xl w-full max-w-sm mx-auto shadow-lg">
+            
+            <div class="flex flex-col space-y-4">
+                <button class="option-btn text-left w-full p-4 bg-pink-100 rounded-xl font-medium text-gray-800 hover:bg-pink-200 transition-colors"> Garba</button>
+                <button class="option-btn text-left w-full p-4 bg-pink-100 rounded-xl font-medium text-gray-800 hover:bg-pink-200 transition-colors"> College Days Celebration 2022</button>
+                <button class="option-btn text-left w-full p-4 bg-pink-100 rounded-xl font-medium text-gray-800 hover:bg-pink-200 transition-colors">Party</button>
+            </div>
+            
+            <p id="feedback3" class="text-lg font-bold text-center text-pink-600 transition-opacity duration-300 opacity-0"></p>
+        </div>
+
+        <!-- Page 4: Quiz Question 3 -->
+        <div id="page4" class="page hidden w-full quiz-container space-y-6 flex flex-col justify-between">
+            <h2 class="text-2xl md:text-3xl font-bold text-pink-600">what are you excited about?</h2>
+            <img src="https://ucaa6c5d0f77331211adadb576ac.previews.dropboxusercontent.com/p/thumb/ACyzYVoXF5d7OvDNs76FFmiIXh2wsv4b_1LwQnPMl2vS4n-3pXDhgVuXLOxTNMawel0yMB_0GJ1tHmSEiXTL4XMCFq14QNI5ZvnZWBxK0VoXbthw1hqTMMaG2wRpw5i9WWA8H66TL6m0ZWZDiMZAxN0W3cv_aKqzr03F7qc5p8Rg-7xZvnA5gqP0aaa_IlQH1TrEWWLgygIvc66PYCp65xIRAplnMRjxW7MqmcsqXtaEKkOEFMaNw5u4w63JaxlyljUBcNfemM2ht03ClTT8GnKxjiSpELe39z9R6hOHmg899maLdFEZrhlJMdZBb3F8crI5yy-tzRFZJPMW5HPE8DiUSnLRivjpmq0EiVMuAZJ_dXDw29NYa343lEzx0sVghQk2JCoJZ6k4gZATX0ScNAG0/p.jpeg" alt="Quiz Photo 3" class="rounded-2xl w-full max-w-sm mx-auto shadow-lg">
+            
+            <div class="flex flex-col space-y-4">
+                <button class="option-btn text-left w-full p-4 bg-pink-100 rounded-xl font-medium text-gray-800 hover:bg-pink-200 transition-colors"> Delhi</button>
+                <button class="option-btn text-left w-full p-4 bg-pink-100 rounded-xl font-medium text-gray-800 hover:bg-pink-200 transition-colors">Food</button>
+                <button class="option-btn text-left w-full p-4 bg-pink-100 rounded-xl font-medium text-gray-800 hover:bg-pink-200 transition-colors">First time you were out alone</button>
+            </div>
+            
+            <p id="feedback4" class="text-lg font-bold text-center text-pink-600 transition-opacity duration-300 opacity-0"></p>
+        </div>
+
+        <!-- Page 5: Final Page -->
+        <div id="page5" class="page hidden w-full space-y-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-pink-600 text-pacifico">And a message for you!</h2>
+            <p class="text-lg text-gray-700 font-semibold leading-relaxed">How can i put only good photos.😂😂</p>
+            <img src="https://uc9aeaed6604f81107771911fca5.previews.dropboxusercontent.com/p/thumb/ACxznZ27cLFTtbjo5pXRBRem3LfSWAGPyYDbIn-wOrV0vF7tTBVImSuiNNK2mI2iks_mzZRCAu6znGmh18VBWXdGd07fDgTMJSSIye23cCzsUotwAFDhuWIyfBKJUpeBRT8n8JQg9CZ_GMLBqYmadr91BI5aWB8Y1UVAySPWnhgP679aNjdpwTXq9c-ltvRMqrcMpIqeWn6R_YazGrqwla1DXEqYbf_SVO-CoY1-cnFU_a3KfMCj-lY9jsuxdB_g9me9wWuG05_3uLz1MO6L5sC-9B_gVC9Uv4vn2iv82tLLmC3cZ8hbnUlSbnYYp1MQ5WJ7O65fhdRsD4xeiNRCciAycmHVCaOianvs11EgVwruCgZYGRKnoNdVCz9axopgkH-lhDKf1AcJFkBsj1khZXpe/p.jpeg" alt="Final Photo" class="rounded-2xl w-full max-w-sm mx-auto shadow-lg">
+            <p class="text-lg text-gray-700 font-semibold leading-relaxed">Happy birthday Again! Just like how you were smiling in each photo I hope you will always keep smiling and be happy. I am not the friend you wised for I am probably the opposite of the friends u had in your life but i am greatful that you are my life. Thank you for being part of my life and filling it with joy and laughter.Only one advice "thoda sa, sirf thoda sa drama kam that's all." Cheers to another year of friendship and adventure!</p>
+
+            <div class="flex items-center justify-center space-x-2 mt-4">
+                <input type="checkbox" id="friends-checkbox" class="form-checkbox h-5 w-5 text-pink-600 rounded-md">
+                <label for="friends-checkbox" class="text-gray-700">Let's always be friends</label>
+            </div>
+
+            <button id="final-button" class="mt-6 px-8 py-4 bg-pink-500 text-white font-bold rounded-full shadow-lg hover:bg-pink-600 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed transform hover:scale-105" disabled>Submit</button>
+        </div>
+
+    </div>
+
+    <!-- Confetti container -->
+    <div id="confetti-container" class="fixed inset-0 pointer-events-none z-50"></div>
+
+    <script>
+        // Pages
+        const pages = document.querySelectorAll('.page');
+        let currentPage = 1;
+
+        // Function to show a specific page and hide others
+        function showPage(pageNumber) {
+            pages.forEach(page => page.classList.add('hidden'));
+            document.getElementById('page' + pageNumber).classList.remove('hidden');
+        }
+
+        // --- Countdown Logic ---
+        const countdownElement = document.getElementById('countdown');
+        const beginButton = document.getElementById('begin-button');
+        const countdownDate = new Date("September 6, 2025 00:00:00").getTime();
+
+        const countdownInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                countdownElement.innerHTML = '<span class="text-pink-600 font-bold">It\'s your day!</span>';
+                beginButton.disabled = false;
+            } else {
+                document.getElementById("days").innerHTML = days;
+                document.getElementById("hours").innerHTML = hours;
+                document.getElementById("minutes").innerHTML = minutes;
+                document.getElementById("seconds").innerHTML = seconds;
+            }
+        }, 1000);
+
+        // --- Quiz and Page Navigation Logic ---
+        beginButton.addEventListener('click', () => {
+            showPage(2);
+        });
+
+        const quizData = {
+            2: { correct: 0, feedbackId: 'feedback2', nextPage: 3 }, // 0-indexed button
+            3: { correct: 1, feedbackId: 'feedback3', nextPage: 4 },
+            4: { correct: 2, feedbackId: 'feedback4', nextPage: 5 }
+        };
+
+        const quizPages = [document.getElementById('page2'), document.getElementById('page3'), document.getElementById('page4')];
+
+        quizPages.forEach((page, pageIndex) => {
+            const pageId = pageIndex + 2;
+            const buttons = page.querySelectorAll('.option-btn');
+            const feedbackEl = document.getElementById(quizData[pageId].feedbackId);
+            
+            buttons.forEach((button, buttonIndex) => {
+                button.addEventListener('click', () => {
+                    if (buttonIndex === quizData[pageId].correct) {
+                        feedbackEl.textContent = 'High-five! You got it right!';
+                        feedbackEl.classList.remove('opacity-0');
+                        setTimeout(() => {
+                            feedbackEl.classList.add('opacity-0');
+                            setTimeout(() => {
+                                showPage(quizData[pageId].nextPage);
+                            }, 500); // Wait for fade out
+                        }, 1500); // Show for 1.5 seconds
+                    } else {
+                        feedbackEl.textContent = 'Oops, try again!';
+                        feedbackEl.classList.remove('opacity-0');
+                        setTimeout(() => {
+                            feedbackEl.classList.add('opacity-0');
+                        }, 1500);
+                    }
+                });
+            });
+        });
+
+        // --- Final Page Logic ---
+        const friendsCheckbox = document.getElementById('friends-checkbox');
+        const finalButton = document.getElementById('final-button');
+
+        friendsCheckbox.addEventListener('change', () => {
+            finalButton.disabled = !friendsCheckbox.checked;
+        });
+
+        finalButton.addEventListener('click', () => {
+            if (friendsCheckbox.checked) {
+                // Trigger the sprinkle effect
+                for (let i = 0; i < 50; i++) {
+                    createConfetti();
+                }
+
+                // Make the confetti continue for a few seconds
+                const confettiInterval = setInterval(() => {
+                    for (let i = 0; i < 10; i++) {
+                        createConfetti();
+                    }
+                }, 200);
+
+                setTimeout(() => clearInterval(confettiInterval), 3000);
+            }
+        });
+
+        // --- Confetti Effect (Pure JS/CSS) ---
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.width = '10px';
+            confetti.style.height = '10px';
+            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            confetti.style.position = 'absolute';
+            confetti.style.left = `${Math.random() * 100}vw`;
+            confetti.style.top = `${-10}px`;
+            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+            confetti.style.animation = `fall ${Math.random() * 2 + 1}s linear forwards`;
+            confetti.style.animationDelay = `${Math.random() * 0.5}s`;
+            document.getElementById('confetti-container').appendChild(confetti);
+
+            confetti.onanimationend = () => confetti.remove();
+        }
+
+        const style = document.createElement('style');
+        style.innerHTML = `
